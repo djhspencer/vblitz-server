@@ -1,16 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const cors = require("cors");
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
 const corsOptions = {
-  origin: "http://localhost:3000"
+  origin: "http://127.0.0.1:5173",
+  credentials: true
 };
 
 const port = 5000;
 
 app.use(cors(corsOptions));
+app.use(cookieParser());
 
 app.use(bodyParser.json())
 app.use(
@@ -19,9 +22,10 @@ app.use(
   })
 )
 
-
 const usersRouter = require('./routes/users.js')
+const foldersRouter = require('./routes/folders.js')
 app.use('/users', usersRouter)
+app.use('/folders', foldersRouter)
 
 const db = require("./models");
 db.sequelize.sync()

@@ -8,6 +8,12 @@ module.exports = (sequelize, Sequelize) => {
     },
     email: {
       type: Sequelize.STRING
+    },
+    pass: {
+      type: Sequelize.STRING
+    },
+    refresh_token: {
+      type: Sequelize.STRING
     }
   });
 

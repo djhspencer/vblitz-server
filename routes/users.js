@@ -3,12 +3,23 @@ const router = express.Router();
 
 const users = require("../controllers/user.controller.js");
 
-// Create a new user
-router.post("/", users.createUser);
+// Auth routes
+router.post("/register", users.register);
 
-// router.get('/', (request, response) => {
-//   response.json({ info: 'Node.js, Express, and Postgres API' })
-// })
+router.post("/login", users.login);
+
+router.get("/logout", users.logout);
+
+router.get("/refresh", users.refresh);
+
+
+//basic routes
+router.post("/create", users.createUser);
+
+router.patch("/update/:id", users.updateUser);
+
+router.delete("/delete/:id", users.deleteUser);
+
 
 
 module.exports = router;

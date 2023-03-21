@@ -6,7 +6,6 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   port: dbConfig.PORT,
   dialect: dbConfig.dialect,
   operatorsAliases: 0,
-
   pool: {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,
@@ -21,5 +20,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.users = require("./user.model.js")(sequelize, Sequelize);
+db.folders = require("./folder.model.js")(sequelize, Sequelize);
 
 module.exports = db;
