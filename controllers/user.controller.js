@@ -37,10 +37,11 @@ exports.register = async (req, res) => {
         {
           UserInfo: {
             email: user.email,
+            userId: user.id
           },
         },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "15s" }
+        { expiresIn: "15m" }
       );
 
       res.cookie("jwt", refreshToken, {
@@ -79,10 +80,11 @@ exports.login = async (req, res) => {
         {
           UserInfo: {
             email: user.email,
+            userId: user.id
           },
         },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "15s" }
+        { expiresIn: "15m" }
       );
 
       const refreshToken = jwt.sign(
@@ -121,7 +123,7 @@ exports.refresh = async (req, res) => {
 
   const refreshToken = cookies.jwt;
 
-  const user = await User.findOne({ refresh_token: refreshToken });
+  const user = await User.findOne({ where: { refresh_token: refreshToken } });
   if (user == null) {
     return res.status(404).json({ message: "Not valid" });
   }
@@ -139,10 +141,11 @@ exports.refresh = async (req, res) => {
           {
             UserInfo: {
               email: decoded.email,
+              userId: user.id
             },
           },
           process.env.ACCESS_TOKEN_SECRET,
-          { expiresIn: "15s" }
+          { expiresIn: "15m" }
         );
 
         res.status(200).json({ accessToken });

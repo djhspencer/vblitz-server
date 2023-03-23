@@ -24,8 +24,10 @@ app.use(
 
 const usersRouter = require('./routes/users.js')
 const foldersRouter = require('./routes/folders.js')
+const card_setsRouter = require('./routes/card_sets.js')
 app.use('/users', usersRouter)
 app.use('/folders', foldersRouter)
+app.use('/card_sets', card_setsRouter)
 
 const db = require("./models");
 db.sequelize.sync()
