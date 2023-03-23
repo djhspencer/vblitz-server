@@ -21,5 +21,7 @@ db.sequelize = sequelize;
 
 db.users = require("./user.model.js")(sequelize, Sequelize);
 db.folders = require("./folder.model.js")(sequelize, Sequelize);
+db.card_sets = require("./card_set.model.js")(sequelize, Sequelize);
+db.cards = require("./cards.model.js")(sequelize, Sequelize);
 
 module.exports = db;

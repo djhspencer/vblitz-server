@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 
-const folders = require("../controllers/folder.controller.js");
+const card_sets = require("../controllers/card_set.controller.js");
 
 //basic routes
-router.post("/create", authorizeUser, folders.createFolder);
+router.post("/create", authorizeUser, card_sets.createCardSet);
 
-router.get("/getFolders", authorizeUser, folders.getFolders);
+router.get("/getCardSets", authorizeUser, card_sets.getCardSets);
 
 //router.patch("/update/:id", folders.updateFolder);
 
